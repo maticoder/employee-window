@@ -9,8 +9,6 @@ import localizations from "../../util/localizations";
 import Select from "../Select/Select";
 import Button from "../Button/Button";
 
-import Checkbox from "../Checkbox/Checkbox";
-
 import "./Window.css";
 
 function Window() {
@@ -21,19 +19,25 @@ function Window() {
         console.log(selectedPositions);
     };
 
-    const handleAddPosition = (position) => {
-        setSelectedPositions([...selectedPositions, position]);
+    const handlePositionClick = (position) => {
+        if (selectedPositions.includes(position)) {
+            setSelectedPositions(
+                selectedPositions.filter((pos) => pos !== position)
+            );
+        } else {
+            setSelectedPositions([...selectedPositions, position]);
+        }
     };
 
     return (
         <div className="window">
             <h1>Wybierz pracowników</h1>
-            {/* <Select
+            <Select
                 label="Stanowiska"
                 options={positions}
                 selected={selectedPositions}
-                handleAdd={handleAddPosition}
-            /> */}
+                handleClick={handlePositionClick}
+            />
             <div className="button-container">
                 <Button text="Wyświetl" onClick={handleButtonClick} />
             </div>
