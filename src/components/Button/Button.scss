@@ -1,0 +1,19 @@
+.window-button {
+    color: white;
+    background-color: #FF6B01;
+    position: relative;
+    display: inline-block;
+    text-transform: uppercase;
+    border: none;
+    padding: .6rem 1.1rem;
+    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.225);
+    cursor: pointer;
+    outline: none;
+    transition: background-color 200ms ease;
+    letter-spacing: .8px;
+
+    &:hover {
+        background-color: #e96100;
+        box-shadow: 0 3px 7px 0px rgba(0, 0, 0, 0.225);
+    }
+}

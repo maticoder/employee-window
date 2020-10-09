@@ -1,0 +1,33 @@
+.checkbox {
+  position: relative;
+  width: 25px;
+  height: 25px;
+  border: 1px solid #b5c4da;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  border-radius: .2rem;
+  cursor: pointer;
+}
+
+.checkbox span {
+  font-family: 'Material Icons';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 1.4rem;
+  color: orange;
+}
+
+input {
+  position: absolute;
+  opacity: 0;
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+}
