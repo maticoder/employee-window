@@ -5,7 +5,7 @@ import Checkbox from "../Checkbox/Checkbox";
 
 import "./ListItem.css";
 
-export function ListItemInput({ placeholder }) {
+export function ListItemInput({ value, handleChange, placeholder }) {
     return (
         <Fragment>
             <span className="search">search</span>
@@ -13,6 +13,8 @@ export function ListItemInput({ placeholder }) {
                 placeholder={placeholder}
                 className="list-item-input"
                 type="text"
+                value={value}
+                onChange={(e) => handleChange(e)}
             />
         </Fragment>
     );
@@ -38,7 +40,9 @@ function ListItem({ all, first, children }) {
 }
 
 ListItemInput.propTypes = {
+    value: PropTypes.string,
     placeholder: PropTypes.string,
+    handleChange: PropTypes.func,
 };
 
 ListItemCheckbox.propTypes = {

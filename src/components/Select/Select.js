@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import ListItem, {
     ListItemInput,
@@ -6,11 +6,41 @@ import ListItem, {
 } from "../ListItem/ListItem";
 
 import SelectInput from "../SelectInput/SelectInput";
+import SelectDropdown from "../SelecDropdown/SelectDropdown";
+
+// scrollbar
+import "overlayscrollbars/css/OverlayScrollbars.css";
+import { OverlayScrollbarsComponent } from "overlayscrollbars-react";
 
 import "./Select.css";
 
-function Select({ label, options, selected, handleElementChange }) {
+function Select({
+    label,
+    allLabel,
+    inputLabel,
+    searchLabel,
+    options,
+    selected,
+    handleElementChange,
+}) {
     const [open, setOpen] = useState(false);
+    const [filter, setFilter] = useState("");
+
+    useEffect(() => {
+        if (!open) {
+            setFilter("");
+        }
+    }, [open]);
+
+    const handleFilterChange = (e) => {
+        setFilter(e.target.value);
+    };
+
+    const filterOptions = () => {
+        return options.filter((option) =>
+            option.toLowerCase().includes(filter.toLowerCase())
+        );
+    };
 
     const toggle = () => setOpen(!open);
 
@@ -21,17 +51,25 @@ function Select({ label, options, selected, handleElementChange }) {
                 onClick={toggle}
                 label={label}
                 selected={selected}
+                inputLabel={inputLabel}
             />
             {open && (
-                <div className="select-dropdown">
+                <SelectDropdown>
                     <ListItem first>
-                        <ListItemInput placeholder="Szukaj..." />
+                        <ListItemInput
+                            value={filter}
+                            handleChange={handleFilterChange}
+                            placeholder={searchLabel}
+                        />
                     </ListItem>
                     <ListItem all>
-                        <ListItemCheckbox label="Wszystkie" />
+                        <ListItemCheckbox label={allLabel} />
                     </ListItem>
-                    <div className="scroll-area">
-                        {options.map((option) => (
+                    <OverlayScrollbarsComponent
+                        className="overlay-scrollbar"
+                        style={{ width: "100%", maxHeight: 230 }}
+                    >
+                        {filterOptions().map((option) => (
                             <ListItem key={option}>
                                 <ListItemCheckbox
                                     label={option}
@@ -40,8 +78,8 @@ function Select({ label, options, selected, handleElementChange }) {
                                 />
                             </ListItem>
                         ))}
-                    </div>
-                </div>
+                    </OverlayScrollbarsComponent>
+                </SelectDropdown>
             )}
         </div>
     );
@@ -49,6 +87,9 @@ function Select({ label, options, selected, handleElementChange }) {
 
 Select.propTypes = {
     label: PropTypes.string,
+    allLabel: PropTypes.string,
+    inputLabel: PropTypes.string,
+    searchLabel: PropTypes.string,
     options: PropTypes.arrayOf(PropTypes.string),
     selected: PropTypes.arrayOf(PropTypes.string),
     handleElementChange: PropTypes.func,

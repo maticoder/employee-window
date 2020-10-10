@@ -1,0 +1,15 @@
+.select-dropdown {
+  width: 100%;
+  position: absolute;
+  z-index: 10;
+}
+
+.select-dropdown .overlay-scrollbar .os-scrollbar-vertical {
+  width: 8px !important;
+  padding: 0;
+}
+
+.select-dropdown .overlay-scrollbar .os-scrollbar-vertical .os-scrollbar-handle {
+  border-radius: 0 !important;
+  background: #DCE2E8 !important;
+}

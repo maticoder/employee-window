@@ -3,10 +3,10 @@ import PropTypes from "prop-types";
 
 import "./SelectInput.css";
 
-function SelectInput({ active, onClick, label, selected }) {
+function SelectInput({ active, inputLabel, onClick, label, selected }) {
     const getSelected = (selected) => {
         if (selected.length === 0) {
-            return "Wybierz...";
+            return inputLabel;
         } else if (selected.length === 1) {
             return `${selected[0]}`;
         } else if (selected.length === 2) {
@@ -32,6 +32,7 @@ function SelectInput({ active, onClick, label, selected }) {
 
 SelectInput.propTypes = {
     active: PropTypes.bool,
+    inputLabel: PropTypes.string,
     onClick: PropTypes.func,
     label: PropTypes.string,
     selected: PropTypes.arrayOf(PropTypes.string),

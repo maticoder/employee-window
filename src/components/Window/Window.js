@@ -33,6 +33,9 @@ function Window() {
             <h1>Wybierz pracowników</h1>
             <Select
                 label="Stanowiska"
+                allLabel="Wszystkie"
+                inputLabel="Wybierz..."
+                searchLabel="Szukaj..."
                 options={positions}
                 selected={selectedPositions}
                 handleElementChange={handlePositionChange}
