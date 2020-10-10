@@ -12,6 +12,8 @@ import SelectDropdown from "../SelecDropdown/SelectDropdown";
 import "overlayscrollbars/css/OverlayScrollbars.css";
 import { OverlayScrollbarsComponent } from "overlayscrollbars-react";
 
+import onClickOutside from "react-onclickoutside";
+
 import "./Select.css";
 
 function Select({
@@ -25,6 +27,8 @@ function Select({
 }) {
     const [open, setOpen] = useState(false);
     const [filter, setFilter] = useState("");
+
+    Select.handleClickOutside = () => setOpen(false);
 
     useEffect(() => {
         if (!open) {
@@ -85,6 +89,10 @@ function Select({
     );
 }
 
+const clickOutsideConfig = {
+    handleClickOutside: () => Select.handleClickOutside,
+};
+
 Select.propTypes = {
     label: PropTypes.string,
     allLabel: PropTypes.string,
@@ -95,4 +103,4 @@ Select.propTypes = {
     handleElementChange: PropTypes.func,
 };
 
-export default Select;
+export default onClickOutside(Select, clickOutsideConfig);
