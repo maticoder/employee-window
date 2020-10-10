@@ -1,40 +1,57 @@
-import React from "react";
+import React, { useState } from "react";
+import PropTypes from "prop-types";
+import ListItem, {
+    ListItemInput,
+    ListItemCheckbox,
+} from "../ListItem/ListItem";
+
+import SelectInput from "../SelectInput/SelectInput";
 
 import "./Select.css";
 
-function Select({ label, options, selected, handleClick }) {
-    const getSelected = (selected) => {
-        if (selected.length === 0) {
-            return "Wybierz...";
-        } else if (selected.length === 1) {
-            return `${selected[0]}`;
-        } else if (selected.length === 2) {
-            return `${selected[0]}, ${selected[1]}`;
-        } else {
-            return `${selected[0]}, ${selected[1]} +${selected.length - 2}`;
-        }
-    };
+function Select({ label, options, selected, handleElementChange }) {
+    const [open, setOpen] = useState(false);
+
+    const toggle = () => setOpen(!open);
 
     return (
         <div className="select">
-            <div className="select-input">
-                <div className="select-input-label">{label}</div>
-                <div className="select-input-container">
-                    <p>{getSelected(selected)}</p>
-                    <span className="arrow">play_arrow</span>
+            <SelectInput
+                active={open}
+                onClick={toggle}
+                label={label}
+                selected={selected}
+            />
+            {open && (
+                <div className="select-dropdown">
+                    <ListItem first>
+                        <ListItemInput placeholder="Szukaj..." />
+                    </ListItem>
+                    <ListItem all>
+                        <ListItemCheckbox label="Wszystkie" />
+                    </ListItem>
+                    <div className="scroll-area">
+                        {options.map((option) => (
+                            <ListItem key={option}>
+                                <ListItemCheckbox
+                                    label={option}
+                                    checked={selected.includes(option)}
+                                    onChange={() => handleElementChange(option)}
+                                />
+                            </ListItem>
+                        ))}
+                    </div>
                 </div>
-            </div>
-            <div className="select-dropdown"></div>
-            <label>{label}</label>
-            <div>
-                {options.map((option) => (
-                    <p key={option} onClick={() => handleClick(option)}>
-                        {selected.includes(option) && "tak"} {option}
-                    </p>
-                ))}
-            </div>
+            )}
         </div>
     );
 }
+
+Select.propTypes = {
+    label: PropTypes.string,
+    options: PropTypes.arrayOf(PropTypes.string),
+    selected: PropTypes.arrayOf(PropTypes.string),
+    handleElementChange: PropTypes.func,
+};
 
 export default Select;

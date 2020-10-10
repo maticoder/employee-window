@@ -2,8 +2,7 @@ import React, { useState } from "react";
 
 // import data
 import data from "../../util/data";
-import positions from "../../util/positions";
-import localizations from "../../util/localizations";
+import { positions, localizations, conditions } from "../../util/categories";
 
 // import components
 import Select from "../Select/Select";
@@ -19,7 +18,7 @@ function Window() {
         console.log(selectedPositions);
     };
 
-    const handlePositionClick = (position) => {
+    const handlePositionChange = (position) => {
         if (selectedPositions.includes(position)) {
             setSelectedPositions(
                 selectedPositions.filter((pos) => pos !== position)
@@ -36,7 +35,7 @@ function Window() {
                 label="Stanowiska"
                 options={positions}
                 selected={selectedPositions}
-                handleClick={handlePositionClick}
+                handleElementChange={handlePositionChange}
             />
             <div className="button-container">
                 <Button text="Wyświetl" onClick={handleButtonClick} />

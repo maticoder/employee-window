@@ -1,0 +1,33 @@
+.select-input {
+    cursor: pointer;
+    user-select: none;
+    padding: 10px 16px;
+    border-bottom: 1px solid black;
+
+    &.active {
+        border-bottom: none;
+    }
+
+    &-label {
+        font-weight: 400;
+        color: #aaaaaa;
+        font-size: 14px;
+    }
+
+    &-container {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;    
+
+        span {
+            display: inline-block;
+            transform: rotate(90deg);
+            font-family: 'Material Icons';
+            font-style: normal;
+            font-weight: 400;
+            font-size: 1.4rem;
+            color: black;
+        }
+    }
+}

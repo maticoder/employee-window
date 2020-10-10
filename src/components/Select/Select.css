@@ -1,42 +1,26 @@
-.select-input {
-  cursor: pointer;
-  -webkit-user-select: none;
-     -moz-user-select: none;
-      -ms-user-select: none;
-          user-select: none;
-  padding: 10px 16px;
-  border-bottom: 1px solid black;
+.select {
+  position: relative;
 }
 
-.select-input-label {
-  font-weight: 400;
-  color: #aaaaaa;
-  font-size: 14px;
+.select-dropdown {
+  width: 100%;
+  position: absolute;
+  z-index: 10;
 }
 
-.select-input-container {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: horizontal;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: row;
-          flex-direction: row;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+.select-dropdown .scroll-area {
+  overflow-y: overlay;
+  max-height: 230px;
 }
 
-.select-input-container span {
-  display: inline-block;
-  -webkit-transform: rotate(90deg);
-          transform: rotate(90deg);
-  font-family: 'Material Icons';
-  font-style: normal;
-  font-weight: 400;
-  font-size: 1.4rem;
-  color: black;
+.select-dropdown .scroll-area::-webkit-scrollbar {
+  width: 9px;
+}
+
+.select-dropdown .scroll-area::-webkit-scrollbar-thumb {
+  background-color: #DCE2E8;
+}
+
+.select-dropdown .scroll-area::-webkit-scrollbar-track {
+  background-color: whitesmoke;
 }

@@ -1,4 +1,4 @@
-const positions = [
+export const positions = [
     "Architekt",
     "Artysta",
     "Bankowiec",
@@ -40,4 +40,17 @@ const positions = [
     "Weterynarz",
 ];
 
-export default positions;
+export const localizations = [
+    "Warszawa",
+    "Kraków",
+    "Łódź",
+    "Wrocław",
+    "Poznań",
+    "Gdańsk",
+    "Szczecin",
+    "Bydgoszcz",
+    "Lublin",
+    "Białystok",
+];
+
+export const conditions = ["Umowa o pracę", "Umowa zlecenie", "Umowa o dzieło"];
