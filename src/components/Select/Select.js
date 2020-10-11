@@ -14,6 +14,8 @@ import { OverlayScrollbarsComponent } from "overlayscrollbars-react";
 
 import onClickOutside from "react-onclickoutside";
 
+import compareSortedArrays from "../../util/compareSortedArrays";
+
 import "./Select.css";
 
 function Select({
@@ -24,6 +26,7 @@ function Select({
     options,
     selected,
     handleElementChange,
+    handleAllElementChange,
 }) {
     const [open, setOpen] = useState(false);
     const [filter, setFilter] = useState("");
@@ -40,7 +43,7 @@ function Select({
         setFilter(e.target.value);
     };
 
-    const filterOptions = () => {
+    const filteredOptions = () => {
         return options.filter((option) =>
             option.toLowerCase().includes(filter.toLowerCase())
         );
@@ -67,13 +70,22 @@ function Select({
                         />
                     </ListItem>
                     <ListItem all>
-                        <ListItemCheckbox label={allLabel} />
+                        <ListItemCheckbox
+                            label={allLabel}
+                            checked={
+                                selected.length === filteredOptions().length &&
+                                compareSortedArrays(selected, filteredOptions())
+                            }
+                            onChange={() =>
+                                handleAllElementChange(filteredOptions())
+                            }
+                        />
                     </ListItem>
                     <OverlayScrollbarsComponent
                         className="overlay-scrollbar"
                         style={{ width: "100%", maxHeight: 230 }}
                     >
-                        {filterOptions().map((option) => (
+                        {filteredOptions().map((option) => (
                             <ListItem key={option}>
                                 <ListItemCheckbox
                                     label={option}
@@ -101,6 +113,7 @@ Select.propTypes = {
     options: PropTypes.arrayOf(PropTypes.string),
     selected: PropTypes.arrayOf(PropTypes.string),
     handleElementChange: PropTypes.func,
+    handleAllElementChange: PropTypes.func,
 };
 
 export default onClickOutside(Select, clickOutsideConfig);
