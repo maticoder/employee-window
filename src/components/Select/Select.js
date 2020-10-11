@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { Component } from "react";
 import PropTypes from "prop-types";
 import ListItem, {
     ListItemInput,
@@ -14,96 +14,133 @@ import { OverlayScrollbarsComponent } from "overlayscrollbars-react";
 
 import onClickOutside from "react-onclickoutside";
 
-import compareSortedArrays from "../../util/compareSortedArrays";
-
 import "./Select.css";
 
-function Select({
-    label,
-    allLabel,
-    inputLabel,
-    searchLabel,
-    options,
-    selected,
-    handleElementChange,
-    handleAllElementChange,
-}) {
-    const [open, setOpen] = useState(false);
-    const [filter, setFilter] = useState("");
+class Select extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            open: false,
+            filter: "",
+        };
+    }
 
-    Select.handleClickOutside = () => setOpen(false);
+    handleClickOutside = () => this.setState({ open: false, filter: "" });
 
-    useEffect(() => {
-        if (!open) {
-            setFilter("");
-        }
-    }, [open]);
-
-    const handleFilterChange = (e) => {
-        setFilter(e.target.value);
+    handleFilterChange = (e) => {
+        this.setState({
+            filter: e.target.value,
+        });
     };
 
-    const filteredOptions = () => {
-        return options.filter((option) =>
-            option.toLowerCase().includes(filter.toLowerCase())
+    filteredOptions = () => {
+        return this.props.options.filter((option) =>
+            option.toLowerCase().includes(this.state.filter.toLowerCase())
         );
     };
 
-    const toggle = () => setOpen(!open);
+    toggle = () =>
+        this.setState({
+            open: !this.state.open,
+        });
 
-    return (
-        <div className="select">
-            <SelectInput
-                active={open}
-                onClick={toggle}
-                label={label}
-                selected={selected}
-                inputLabel={inputLabel}
-            />
-            {open && (
-                <SelectDropdown>
-                    <ListItem first>
-                        <ListItemInput
-                            value={filter}
-                            handleChange={handleFilterChange}
-                            placeholder={searchLabel}
-                        />
-                    </ListItem>
-                    <ListItem all>
-                        <ListItemCheckbox
-                            label={allLabel}
-                            checked={
-                                selected.length === filteredOptions().length &&
-                                compareSortedArrays(selected, filteredOptions())
-                            }
-                            onChange={() =>
-                                handleAllElementChange(filteredOptions())
-                            }
-                        />
-                    </ListItem>
-                    <OverlayScrollbarsComponent
-                        className="overlay-scrollbar"
-                        style={{ width: "100%", maxHeight: 230 }}
-                    >
-                        {filteredOptions().map((option) => (
-                            <ListItem key={option}>
-                                <ListItemCheckbox
-                                    label={option}
-                                    checked={selected.includes(option)}
-                                    onChange={() => handleElementChange(option)}
-                                />
-                            </ListItem>
-                        ))}
-                    </OverlayScrollbarsComponent>
-                </SelectDropdown>
-            )}
-        </div>
-    );
+    handleElementChange = (element) => {
+        if (this.props.selected.includes(element)) {
+            this.props.setSelected(
+                this.props.selected.filter((el) => el !== element)
+            );
+        } else {
+            this.props.setSelected((selected) => [...selected, element]);
+        }
+    };
+
+    handleAllElementChange = (elements) => {
+        const filtered = this.filteredOptions();
+        if (
+            filtered.every((element) => this.props.selected.includes(element))
+        ) {
+            this.props.setSelected(
+                this.props.selected.filter((el) => !filtered.includes(el))
+            );
+        } else {
+            this.props.setSelected([...elements]);
+        }
+    };
+
+    render() {
+        const {
+            label,
+            allLabel,
+            inputLabel,
+            searchLabel,
+            // options,
+            selected,
+            // setSelected,
+        } = this.props;
+
+        const { open, filter } = this.state;
+
+        return (
+            <div className="select">
+                <SelectInput
+                    active={open}
+                    onClick={this.toggle}
+                    label={label}
+                    selected={selected}
+                    inputLabel={inputLabel}
+                />
+                {open && (
+                    <SelectDropdown>
+                        <ListItem first>
+                            <ListItemInput
+                                value={filter}
+                                handleChange={this.handleFilterChange}
+                                placeholder={searchLabel}
+                            />
+                        </ListItem>
+                        <ListItem all>
+                            <ListItemCheckbox
+                                label={allLabel}
+                                checked={
+                                    // selected.length ===
+                                    //     this.filteredOptions().length &&
+                                    this.filteredOptions().every((element) =>
+                                        selected.includes(element)
+                                    )
+                                    // compareSortedArrays(
+                                    //     selected,
+                                    //     this.filteredOptions()
+                                    // )
+                                }
+                                onChange={() =>
+                                    this.handleAllElementChange(
+                                        this.filteredOptions()
+                                    )
+                                }
+                            />
+                        </ListItem>
+                        <OverlayScrollbarsComponent
+                            className="overlay-scrollbar"
+                            style={{ width: "100%", maxHeight: 230 }}
+                        >
+                            {this.filteredOptions().map((option) => (
+                                <ListItem key={option}>
+                                    <ListItemCheckbox
+                                        label={option}
+                                        checked={selected.includes(option)}
+                                        onChange={() =>
+                                            this.handleElementChange(option)
+                                        }
+                                    />
+                                </ListItem>
+                            ))}
+                        </OverlayScrollbarsComponent>
+                    </SelectDropdown>
+                )}
+            </div>
+        );
+    }
 }
-
-const clickOutsideConfig = {
-    handleClickOutside: () => Select.handleClickOutside,
-};
 
 Select.propTypes = {
     label: PropTypes.string,
@@ -112,8 +149,7 @@ Select.propTypes = {
     searchLabel: PropTypes.string,
     options: PropTypes.arrayOf(PropTypes.string),
     selected: PropTypes.arrayOf(PropTypes.string),
-    handleElementChange: PropTypes.func,
-    handleAllElementChange: PropTypes.func,
+    setSelected: PropTypes.func,
 };
 
-export default onClickOutside(Select, clickOutsideConfig);
+export default onClickOutside(Select);
