@@ -11,6 +11,8 @@ function DatePickerCalendar({
     selectedSecondDate,
     navigationDate,
     setDate,
+    lastHovered,
+    setLastHovered,
 }) {
     const firstDay = moment(navigationDate).startOf("month").format("d");
     const lastDay = moment(navigationDate).endOf("month").format("D");
@@ -49,9 +51,14 @@ function DatePickerCalendar({
                     date={date}
                     active={compareDate(date)}
                     highlight={
-                        date > selectedFirstDate && date < selectedSecondDate
+                        (date > selectedFirstDate &&
+                            date < selectedSecondDate) ||
+                        (selectedSecondDate === null &&
+                            date < lastHovered &&
+                            date > selectedFirstDate)
                     }
                     onClick={() => setDate(date)}
+                    onMouseOver={() => setLastHovered(date)}
                 />
             ))}
         </div>
@@ -63,6 +70,8 @@ DatePickerCalendar.propTypes = {
     selectedSecondDate: PropTypes.instanceOf(Date),
     navigationDate: PropTypes.instanceOf(Date),
     setDate: PropTypes.func,
+    lastHovered: PropTypes.instanceOf(Date),
+    setLastHoveredq: PropTypes.func,
 };
 
 export default DatePickerCalendar;

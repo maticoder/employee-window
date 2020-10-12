@@ -20,7 +20,7 @@
 }
 
 .cell.highlight {
-  background-color: rgba(0, 0, 0, 0.1);
+  background-color: rgba(0, 0, 0, 0.04);
 }
 
 .cell.active {

@@ -28,6 +28,7 @@ class DatePicker extends Component {
             navigationDate: this.props.selectedFirstDate
                 ? new Date(this.props.selectedFirstDate)
                 : new Date(),
+            lastHovered: null,
         };
     }
 
@@ -78,6 +79,12 @@ class DatePicker extends Component {
         this.handleClickOutside();
     };
 
+    setLastHovered = (date) => {
+        this.setState({
+            lastHovered: date,
+        });
+    };
+
     handleClickOutside = () => this.props.handleDialogClose();
 
     render() {
@@ -85,6 +92,7 @@ class DatePicker extends Component {
             dialogFirstDate,
             dialogSecondDate,
             navigationDate,
+            lastHovered,
         } = this.state;
 
         return (
@@ -107,6 +115,8 @@ class DatePicker extends Component {
                         selectedSecondDate={dialogSecondDate}
                         navigationDate={navigationDate}
                         setDate={this.setDialogDate}
+                        lastHovered={lastHovered}
+                        setLastHovered={this.setLastHovered}
                     />
                     <DatePickerMenu
                         disabled={
