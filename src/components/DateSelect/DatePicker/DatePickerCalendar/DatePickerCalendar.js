@@ -2,11 +2,13 @@ import React from "react";
 import PropTypes from "prop-types";
 import moment from "moment";
 
+import DatePickerCalendarCell from "./DatePickerCalendarCell/DatePickerCalendarCell";
+
 import "./DatePickerCalendar.css";
 
-function DatePickerCalendar({ date, selectedDate, setDate }) {
-    const firstDay = moment(date).startOf("month").format("d");
-    const lastDay = moment(date).endOf("month").format("D");
+function DatePickerCalendar({ selectedDate, navigationDate, setDate }) {
+    const firstDay = moment(navigationDate).startOf("month").format("d");
+    const lastDay = moment(navigationDate).endOf("month").format("D");
 
     const calendar = [];
     for (let i = 0; i < firstDay; i++) {
@@ -22,37 +24,30 @@ function DatePickerCalendar({ date, selectedDate, setDate }) {
     const compareDate = (day) => {
         return (
             day.toString() === moment(selectedDate).format("D") &&
-            moment(date).format("M YYYY") ===
+            moment(navigationDate).format("M YYYY") ===
                 moment(selectedDate).format("M YYYY")
         );
     };
 
     return (
         <div className="date-picker-calendar">
-            {calendar.map((day, index) =>
-                day !== "" ? (
-                    <span
-                        key={index}
-                        className={`cell non-empty-cell ${
-                            compareDate(day) ? "active" : ""
-                        }`}
-                        onClick={() => setDate(new Date(date.setDate(day)))}
-                    >
-                        {day}
-                    </span>
-                ) : (
-                    <span key={index} className="cell">
-                        {day}
-                    </span>
-                )
-            )}
+            {calendar.map((day, index) => (
+                <DatePickerCalendarCell
+                    key={index}
+                    day={day}
+                    active={compareDate(day)}
+                    onClick={() =>
+                        setDate(new Date(navigationDate.setDate(day)))
+                    }
+                />
+            ))}
         </div>
     );
 }
 
 DatePickerCalendar.propTypes = {
-    date: PropTypes.instanceOf(Date),
     selectedDate: PropTypes.instanceOf(Date),
+    navigationDate: PropTypes.instanceOf(Date),
     setDate: PropTypes.func,
 };
 

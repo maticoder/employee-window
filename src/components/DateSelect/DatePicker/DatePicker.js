@@ -22,25 +22,25 @@ class DatePicker extends Component {
             dialogDate: this.props.selectedDate
                 ? new Date(this.props.selectedDate)
                 : new Date(),
-            headerDate: this.props.selectedDate
+            navigationDate: this.props.selectedDate
                 ? new Date(this.props.selectedDate)
                 : new Date(),
         };
     }
 
     addMonth = () => {
-        const currentDate = this.state.headerDate;
+        const currentDate = this.state.navigationDate;
         this.setState({
-            headerDate: new Date(
+            navigationDate: new Date(
                 currentDate.setMonth(currentDate.getMonth() + 1)
             ),
         });
     };
 
     removeMonth = () => {
-        const currentDate = this.state.headerDate;
+        const currentDate = this.state.navigationDate;
         this.setState({
-            headerDate: new Date(
+            navigationDate: new Date(
                 currentDate.setMonth(currentDate.getMonth() - 1)
             ),
         });
@@ -60,14 +60,14 @@ class DatePicker extends Component {
     handleClickOutside = () => this.props.handleDialogClose();
 
     render() {
-        const { dialogDate, headerDate } = this.state;
+        const { dialogDate, navigationDate } = this.state;
 
         return (
             <div className="date-picker">
                 <DatePickerHeader date={dialogDate} />
                 <DatePickerContent>
                     <DatePickerNavigation
-                        date={headerDate}
+                        date={navigationDate}
                         addMonth={this.addMonth}
                         removeMonth={this.removeMonth}
                     />
@@ -75,8 +75,8 @@ class DatePicker extends Component {
                         days={["Ndz", "Pon", "Wt", "Śr", "Czw", "Pt", "Sob"]}
                     />
                     <DatePickerCalendar
-                        date={headerDate}
                         selectedDate={dialogDate}
+                        navigationDate={navigationDate}
                         setDate={this.setDialogDate}
                     />
                     <DatePickerMenu
