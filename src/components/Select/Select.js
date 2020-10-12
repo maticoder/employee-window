@@ -63,7 +63,10 @@ class Select extends Component {
                 this.props.selected.filter((el) => !filtered.includes(el))
             );
         } else {
-            this.props.setSelected([...elements]);
+            const newArray = elements.filter(
+                (element) => !this.props.selected.includes(element)
+            );
+            this.props.setSelected((selected) => [...selected, ...newArray]);
         }
     };
 

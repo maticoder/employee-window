@@ -1,0 +1,43 @@
+.calendar-input {
+    cursor: pointer;
+    user-select: none;
+    padding: 10px 16px;
+    padding-right: 40px;
+    border-bottom: 1px solid black;
+    max-width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    display: inline-flex;
+
+    &.active {
+        border-bottom: none;
+    }
+
+    &-icon {
+
+            display: inline-block;
+            font-family: 'Material Icons';
+            font-style: normal;
+            font-weight: 400;
+            font-size: 2rem;
+            color: #aaaaaa;
+     
+    }
+
+    &-content {
+        margin-left: 15px;
+
+        span {
+            font-weight: 400;
+            color: #bdbdbd;
+            font-size: 14px;
+        }
+    }
+}
+
+@media only screen and (min-width: 576px) {
+    .calendar-input {
+        // max-width: 50%;
+    }
+}

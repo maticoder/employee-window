@@ -30,6 +30,6 @@ input {
 
 .app .container {
   width: 100%;
-  max-width: 700px;
+  max-width: 600px;
   padding: 2rem;
 }
