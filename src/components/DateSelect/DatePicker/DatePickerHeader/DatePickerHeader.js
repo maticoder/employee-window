@@ -4,20 +4,17 @@ import moment from "moment";
 
 import "./DatePickerHeader.css";
 
-function DatePickerHeader({ date, addMonth, removeMonth }) {
+function DatePickerHeader({ date }) {
     return (
         <div className="date-picker-header">
-            <button onClick={removeMonth}>navigate_before</button>
-            <span>{moment(date).format("MMMM YYYY")}</span>
-            <button onClick={addMonth}>navigate_next</button>
+            <span className="year">{moment(date).format("YYYY")}</span>
+            <span className="date">{moment(date).format("ddd, MMM D")}</span>
         </div>
     );
 }
 
 DatePickerHeader.propTypes = {
     date: PropTypes.instanceOf(Date),
-    addMonth: PropTypes.func,
-    removeMonth: PropTypes.func,
 };
 
 export default DatePickerHeader;

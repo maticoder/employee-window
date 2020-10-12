@@ -1,0 +1,30 @@
+.date-picker-navigation {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: .5rem;
+
+    span {
+        font-weight: 400;
+    }
+
+    button {
+        cursor: pointer;
+        display: inline-block;
+        font-family: 'Material Icons';
+        font-style: normal;
+        font-weight: 300;
+        font-size: 1.4rem;
+        color: black;
+        border: none;
+        background-color: white;
+        outline: none;
+        border-radius: 50%;
+        padding: 5px;
+
+        &:hover {
+            background-color: rgba(0, 0, 0, 0.04);
+        }
+    }
+}

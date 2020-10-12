@@ -4,9 +4,11 @@ import moment from "moment";
 import onClickOutside from "react-onclickoutside";
 
 import DatePickerHeader from "./DatePickerHeader/DatePickerHeader";
+import DatePickerNavigation from "./DatePickerNavigation/DatePickerNavigation";
 import DatePickerDays from "./DatePickerDays/DatePickerDays";
 import DatePickerCalendar from "./DatePickerCalendar/DatePickerCalendar";
 import DatePickerMenu from "./DatePickerMenu/DatePickerMenu";
+import DatePickerContent from "./DatePickerContent/DatePickerContent";
 
 import "./DatePicker.css";
 
@@ -62,23 +64,26 @@ class DatePicker extends Component {
 
         return (
             <div className="date-picker">
-                <DatePickerHeader
-                    date={headerDate}
-                    addMonth={this.addMonth}
-                    removeMonth={this.removeMonth}
-                />
-                <DatePickerDays
-                    days={["Ndz", "Pon", "Wt", "Śr", "Czw", "Pt", "Sob"]}
-                />
-                <DatePickerCalendar
-                    date={headerDate}
-                    selectedDate={dialogDate}
-                    setDate={this.setDialogDate}
-                />
-                <DatePickerMenu
-                    handleAccept={this.handleDialogAccept}
-                    handleReject={this.handleClickOutside}
-                />
+                <DatePickerHeader date={dialogDate} />
+                <DatePickerContent>
+                    <DatePickerNavigation
+                        date={headerDate}
+                        addMonth={this.addMonth}
+                        removeMonth={this.removeMonth}
+                    />
+                    <DatePickerDays
+                        days={["Ndz", "Pon", "Wt", "Śr", "Czw", "Pt", "Sob"]}
+                    />
+                    <DatePickerCalendar
+                        date={headerDate}
+                        selectedDate={dialogDate}
+                        setDate={this.setDialogDate}
+                    />
+                    <DatePickerMenu
+                        handleAccept={this.handleDialogAccept}
+                        handleReject={this.handleClickOutside}
+                    />
+                </DatePickerContent>
             </div>
         );
     }

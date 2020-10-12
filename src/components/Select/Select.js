@@ -1,12 +1,9 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import ListItem, {
-    ListItemInput,
-    ListItemCheckbox,
-} from "../ListItem/ListItem";
+import ListItem, { ListItemInput, ListItemCheckbox } from "./ListItem/ListItem";
 
-import SelectInput from "../SelectInput/SelectInput";
-import SelectDropdown from "../SelecDropdown/SelectDropdown";
+import SelectInput from "./SelectInput/SelectInput";
+import SelectDropdown from "./SelecDropdown/SelectDropdown";
 
 // scrollbar
 import "overlayscrollbars/css/OverlayScrollbars.css";
