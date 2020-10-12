@@ -76,6 +76,7 @@ class Select extends Component {
             // options,
             selected,
             // setSelected,
+            maxInputElements,
         } = this.props;
 
         const { open, filter } = this.state;
@@ -88,6 +89,7 @@ class Select extends Component {
                     label={label}
                     selected={selected}
                     inputLabel={inputLabel}
+                    maxInputElements={maxInputElements}
                 />
                 {open && (
                     <SelectDropdown>
@@ -150,6 +152,7 @@ Select.propTypes = {
     options: PropTypes.arrayOf(PropTypes.string),
     selected: PropTypes.arrayOf(PropTypes.string),
     setSelected: PropTypes.func,
+    maxInputElements: PropTypes.number,
 };
 
 export default onClickOutside(Select);

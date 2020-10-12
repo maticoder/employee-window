@@ -44,7 +44,7 @@ function Window() {
     };
 
     const handleButtonClick = () => {
-        console.log(selectedPositions);
+        console.log(selectedEmployees);
     };
 
     return (
@@ -66,6 +66,7 @@ function Window() {
                 options={positions}
                 selected={selectedPositions}
                 setSelected={setSelectedPositions}
+                maxInputElements={2}
             />
             <Select
                 label="Lokalizacje"
@@ -75,6 +76,7 @@ function Window() {
                 options={localizations}
                 selected={selectedLocalizations}
                 setSelected={setSelectedLocalizations}
+                maxInputElements={2}
             />
             <Select
                 label="Pracownicy"
@@ -84,6 +86,7 @@ function Window() {
                 options={filteredEmployees()}
                 selected={selectedEmployees}
                 setSelected={setSelectedEmployees}
+                maxInputElements={1}
             />
             <Select
                 label="Warunki zatrudnienia"
@@ -93,6 +96,7 @@ function Window() {
                 options={conditions}
                 selected={selectedConditions}
                 setSelected={setSelectedConditions}
+                maxInputElements={1}
             />
             <div className="button-container">
                 <Button text="Wyświetl" onClick={handleButtonClick} />
