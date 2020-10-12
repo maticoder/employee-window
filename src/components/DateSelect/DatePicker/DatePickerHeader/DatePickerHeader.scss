@@ -1,17 +1,28 @@
 .date-picker-header {
     display: flex;
-    flex-direction: column;
+    justify-content: space-between;
     padding: 20px;
     color: white;
     background-color: #FF6B01;
 
-    .year {
-        font-size: 1rem;
-        font-weight: 300;
-    }
-
     .date {
-        font-size: 2rem;
-        font-weight: 300;
+        display: flex;
+        flex-direction: column;
+
+        &:nth-child(2) {
+            span {
+                text-align: right;
+            }
+        }
+
+        .year {
+            font-size: 1rem;
+            font-weight: 300;
+        }
+    
+        .month-day {
+            font-size: 2rem;
+            font-weight: 300;
+        }
     }
 }

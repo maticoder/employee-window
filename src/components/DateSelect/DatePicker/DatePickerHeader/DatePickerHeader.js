@@ -7,8 +7,20 @@ import "./DatePickerHeader.css";
 function DatePickerHeader({ date }) {
     return (
         <div className="date-picker-header">
-            <span className="year">{moment(date).format("YYYY")}</span>
-            <span className="date">{moment(date).format("ddd, MMM D")}</span>
+            <div className="date">
+                <span className="year">{moment(date).format("YYYY")}</span>
+                <span className="month-day">
+                    {moment(date).format("MMM D")}
+                </span>
+            </div>
+            {/* <div className="date">
+                <span className="year">
+                    {moment(new Date()).format("YYYY")}
+                </span>
+                <span className="month-day">
+                    {moment(new Date()).format("D MMM")}
+                </span>
+            </div> */}
         </div>
     );
 }

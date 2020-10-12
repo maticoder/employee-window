@@ -2,21 +2,34 @@
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
   padding: 20px;
   color: white;
   background-color: #FF6B01;
 }
 
-.date-picker-header .year {
+.date-picker-header .date {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.date-picker-header .date:nth-child(2) span {
+  text-align: right;
+}
+
+.date-picker-header .date .year {
   font-size: 1rem;
   font-weight: 300;
 }
 
-.date-picker-header .date {
+.date-picker-header .date .month-day {
   font-size: 2rem;
   font-weight: 300;
 }
