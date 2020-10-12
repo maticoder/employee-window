@@ -1,1 +1,38 @@
-/* No CSS */
+.cell {
+  width: 40px;
+  height: 40px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  color: black;
+  font-size: 14px;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  font-weight: 300;
+}
+
+.cell.non-empty-cell {
+  cursor: pointer;
+}
+
+.cell.highlight {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+.cell.active {
+  color: white;
+  background-color: #FF6B01;
+}
+
+.cell.non-empty-cell:hover {
+  background-color: rgba(0, 0, 0, 0.04);
+}
+
+.cell.non-empty-cell.active:hover {
+  color: white;
+  background-color: #FF6B01;
+}

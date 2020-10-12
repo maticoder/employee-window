@@ -1,34 +1,4 @@
 .date-picker-calendar {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
-
-    .cell {
-        width: 40px;
-        height: 40px;
-        display: flex;
-        color: rgba(0, 0, 0, 1);
-        font-size: 14px;
-        justify-content: center;
-        align-items: center;
-        border-radius: 50%;
-        font-weight: 300;
-
-        &.non-empty-cell {
-            cursor: pointer;
-        }
-
-        &.active {
-            color: white;
-            background-color: #FF6B01;
-        }
-
-        &.non-empty-cell:hover {
-            background-color: rgba(0, 0, 0, 0.04);
-        }
-
-        &.non-empty-cell.active:hover {
-            color: white;
-            background-color: #FF6B01;
-        }
-    }
 }

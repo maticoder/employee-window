@@ -12,7 +12,8 @@ import Button from "../Button/Button";
 import "./Window.css";
 
 function Window() {
-    const [selectedDate, setSelectedDate] = useState(null);
+    const [selectedFirstDate, setSelectedFirstDate] = useState(null);
+    const [selectedSecondDate, setSelectedSecondDate] = useState(null);
 
     const [selectedPositions, setSelectedPositions] = useState([]);
     const [selectedLocalizations, setSelectedLocalizations] = useState([]);
@@ -52,8 +53,10 @@ function Window() {
             <DateSelect
                 label="Okres"
                 inputLabel="Wybierz..."
-                selectedDate={selectedDate}
-                setSelectedDate={setSelectedDate}
+                selectedFirstDate={selectedFirstDate}
+                setSelectedFirstDate={setSelectedFirstDate}
+                selectedSecondDate={selectedSecondDate}
+                setSelectedSecondDate={setSelectedSecondDate}
             />
             <Select
                 label="Stanowiska"

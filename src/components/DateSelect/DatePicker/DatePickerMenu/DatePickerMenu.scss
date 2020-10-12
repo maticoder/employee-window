@@ -13,5 +13,9 @@
         outline: none;
         margin: 0 2px;
         text-transform: uppercase;
+
+        &.disabled {
+            color: rgba(0, 0, 0, .3);
+        }
     }
 }

@@ -26,21 +26,31 @@ class DateSelect extends Component {
     };
 
     render() {
-        const { label, inputLabel, selectedDate, setSelectedDate } = this.props;
+        const {
+            label,
+            inputLabel,
+            selectedFirstDate,
+            setSelectedFirstDate,
+            selectedSecondDate,
+            setSelectedSecondDate,
+        } = this.props;
         const { open } = this.state;
 
         return (
             <div className="date">
                 <DateInput
-                    selectedDate={selectedDate}
+                    selectedFirstDate={selectedFirstDate}
+                    selectedSecondDate={selectedSecondDate}
                     onClick={this.handleDialogOpen}
                     label={label}
                     inputLabel={inputLabel}
                 />
                 <DateDialog open={open}>
                     <DatePicker
-                        selectedDate={selectedDate}
-                        setSelectedDate={setSelectedDate}
+                        selectedFirstDate={selectedFirstDate}
+                        setSelectedFirstDate={setSelectedFirstDate}
+                        selectedSecondDate={selectedSecondDate}
+                        setSelectedSecondDate={setSelectedSecondDate}
                         handleDialogClose={this.handleDialogClose}
                     />
                 </DateDialog>
@@ -52,8 +62,10 @@ class DateSelect extends Component {
 DateSelect.propTypes = {
     label: PropTypes.string,
     inputLabel: PropTypes.string,
-    selectedDate: PropTypes.instanceOf(Date),
-    setSelectedDate: PropTypes.func,
+    selectedFirstDate: PropTypes.instanceOf(Date),
+    setSelectedFirstDate: PropTypes.func,
+    selectedSecondDate: PropTypes.instanceOf(Date),
+    setSelectedSecondDate: PropTypes.func,
 };
 
 export default DateSelect;

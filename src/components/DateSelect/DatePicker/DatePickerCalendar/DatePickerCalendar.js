@@ -6,39 +6,52 @@ import DatePickerCalendarCell from "./DatePickerCalendarCell/DatePickerCalendarC
 
 import "./DatePickerCalendar.css";
 
-function DatePickerCalendar({ selectedDate, navigationDate, setDate }) {
+function DatePickerCalendar({
+    selectedFirstDate,
+    selectedSecondDate,
+    navigationDate,
+    setDate,
+}) {
     const firstDay = moment(navigationDate).startOf("month").format("d");
     const lastDay = moment(navigationDate).endOf("month").format("D");
 
     const calendar = [];
     for (let i = 0; i < firstDay; i++) {
-        calendar.push("");
+        calendar.push(null);
     }
     for (let i = 0; i < lastDay; i++) {
-        calendar.push(i + 1);
+        calendar.push(
+            new Date(
+                `${navigationDate.getFullYear()}-${
+                    navigationDate.getMonth() + 1
+                }-${i + 1}`
+            )
+        );
     }
     for (let i = lastDay; i < 42 - firstDay; i++) {
-        calendar.push("");
+        calendar.push(null);
     }
 
-    const compareDate = (day) => {
+    const compareDate = (date) => {
         return (
-            day.toString() === moment(selectedDate).format("D") &&
-            moment(navigationDate).format("M YYYY") ===
-                moment(selectedDate).format("M YYYY")
+            moment(date).format("YYYY MM DD") ===
+                moment(selectedFirstDate).format("YYYY MM DD") ||
+            moment(date).format("YYYY MM DD") ===
+                moment(selectedSecondDate).format("YYYY MM DD")
         );
     };
 
     return (
         <div className="date-picker-calendar">
-            {calendar.map((day, index) => (
+            {calendar.map((date, index) => (
                 <DatePickerCalendarCell
                     key={index}
-                    day={day}
-                    active={compareDate(day)}
-                    onClick={() =>
-                        setDate(new Date(navigationDate.setDate(day)))
+                    date={date}
+                    active={compareDate(date)}
+                    highlight={
+                        date > selectedFirstDate && date < selectedSecondDate
                     }
+                    onClick={() => setDate(date)}
                 />
             ))}
         </div>
@@ -46,7 +59,8 @@ function DatePickerCalendar({ selectedDate, navigationDate, setDate }) {
 }
 
 DatePickerCalendar.propTypes = {
-    selectedDate: PropTypes.instanceOf(Date),
+    selectedFirstDate: PropTypes.instanceOf(Date),
+    selectedSecondDate: PropTypes.instanceOf(Date),
     navigationDate: PropTypes.instanceOf(Date),
     setDate: PropTypes.func,
 };

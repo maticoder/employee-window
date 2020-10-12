@@ -4,7 +4,13 @@ import moment from "moment";
 
 import "./DateInput.css";
 
-function DateInput({ selectedDate, inputLabel, label, onClick }) {
+function DateInput({
+    selectedFirstDate,
+    selectedSecondDate,
+    inputLabel,
+    label,
+    onClick,
+}) {
     return (
         <div onClick={onClick} className="date-input">
             <span className="date-input-icon">event</span>
@@ -12,8 +18,9 @@ function DateInput({ selectedDate, inputLabel, label, onClick }) {
             <div className="date-input-content">
                 <span className="date-input-label">{label}</span>
                 <p className="date-input-date">
-                    {selectedDate
-                        ? moment(selectedDate).format("D.MM.YY")
+                    {selectedFirstDate && selectedSecondDate
+                        ? `${moment(selectedFirstDate).format("D.MM.YY")} -
+                          ${moment(selectedSecondDate).format("D.MM.YY")}`
                         : inputLabel}
                 </p>
             </div>
@@ -22,7 +29,8 @@ function DateInput({ selectedDate, inputLabel, label, onClick }) {
 }
 
 DateInput.propTypes = {
-    selectedDate: PropTypes.instanceOf(Date),
+    selectedFirstDate: PropTypes.instanceOf(Date),
+    selectedSecondDate: PropTypes.instanceOf(Date),
     label: PropTypes.string,
     inputLabel: PropTypes.string,
     onClick: PropTypes.func,

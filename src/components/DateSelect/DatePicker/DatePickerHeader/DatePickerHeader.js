@@ -4,29 +4,36 @@ import moment from "moment";
 
 import "./DatePickerHeader.css";
 
-function DatePickerHeader({ date }) {
+function DatePickerHeader({ dateFirst, dateSecond }) {
     return (
         <div className="date-picker-header">
-            <div className="date">
-                <span className="year">{moment(date).format("YYYY")}</span>
-                <span className="month-day">
-                    {moment(date).format("MMM D")}
-                </span>
-            </div>
-            {/* <div className="date">
-                <span className="year">
-                    {moment(new Date()).format("YYYY")}
-                </span>
-                <span className="month-day">
-                    {moment(new Date()).format("D MMM")}
-                </span>
-            </div> */}
+            {dateFirst && (
+                <div className="date">
+                    <span className="year">
+                        {moment(dateFirst).format("YYYY")}
+                    </span>
+                    <span className="month-day">
+                        {moment(dateFirst).format("MMM D")}
+                    </span>
+                </div>
+            )}
+            {dateSecond && (
+                <div className="date">
+                    <span className="year">
+                        {moment(dateSecond).format("YYYY")}
+                    </span>
+                    <span className="month-day">
+                        {moment(dateSecond).format("D MMM")}
+                    </span>
+                </div>
+            )}
         </div>
     );
 }
 
 DatePickerHeader.propTypes = {
-    date: PropTypes.instanceOf(Date),
+    dateFirst: PropTypes.instanceOf(Date),
+    dateSecond: PropTypes.instanceOf(Date),
 };
 
 export default DatePickerHeader;

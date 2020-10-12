@@ -19,11 +19,14 @@ class DatePicker extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            dialogDate: this.props.selectedDate
-                ? new Date(this.props.selectedDate)
+            dialogFirstDate: this.props.selectedFirstDate
+                ? new Date(this.props.selectedFirstDate)
                 : new Date(),
-            navigationDate: this.props.selectedDate
-                ? new Date(this.props.selectedDate)
+            dialogSecondDate: this.props.selectedSecondDate
+                ? new Date(this.props.selectedSecondDate)
+                : null,
+            navigationDate: this.props.selectedFirstDate
+                ? new Date(this.props.selectedFirstDate)
                 : new Date(),
         };
     }
@@ -47,24 +50,49 @@ class DatePicker extends Component {
     };
 
     setDialogDate = (date) => {
-        this.setState({
-            dialogDate: date,
-        });
+        const { dialogFirstDate, dialogSecondDate } = this.state;
+        if (dialogFirstDate && !dialogSecondDate) {
+            if (date < dialogFirstDate) {
+                this.setState({
+                    dialogFirstDate: date,
+                });
+            } else {
+                this.setState({
+                    dialogSecondDate: date,
+                });
+            }
+        } else if (dialogFirstDate && dialogSecondDate) {
+            this.setState({
+                dialogFirstDate: date,
+                dialogSecondDate: null,
+            });
+        }
+        // this.setState({
+        //     dialogFirstDate: date,
+        // });
     };
 
     handleDialogAccept = () => {
-        this.props.setSelectedDate(this.state.dialogDate);
+        this.props.setSelectedFirstDate(this.state.dialogFirstDate);
+        this.props.setSelectedSecondDate(this.state.dialogSecondDate);
         this.handleClickOutside();
     };
 
     handleClickOutside = () => this.props.handleDialogClose();
 
     render() {
-        const { dialogDate, navigationDate } = this.state;
+        const {
+            dialogFirstDate,
+            dialogSecondDate,
+            navigationDate,
+        } = this.state;
 
         return (
             <div className="date-picker">
-                <DatePickerHeader date={dialogDate} />
+                <DatePickerHeader
+                    dateFirst={dialogFirstDate}
+                    dateSecond={dialogSecondDate}
+                />
                 <DatePickerContent>
                     <DatePickerNavigation
                         date={navigationDate}
@@ -75,11 +103,16 @@ class DatePicker extends Component {
                         days={["Ndz", "Pon", "Wt", "Śr", "Czw", "Pt", "Sob"]}
                     />
                     <DatePickerCalendar
-                        selectedDate={dialogDate}
+                        selectedFirstDate={dialogFirstDate}
+                        selectedSecondDate={dialogSecondDate}
                         navigationDate={navigationDate}
                         setDate={this.setDialogDate}
                     />
                     <DatePickerMenu
+                        disabled={
+                            dialogFirstDate === null ||
+                            dialogSecondDate === null
+                        }
                         handleAccept={this.handleDialogAccept}
                         handleReject={this.handleClickOutside}
                     />
@@ -90,8 +123,10 @@ class DatePicker extends Component {
 }
 
 DatePicker.propTypes = {
-    selectedDate: PropTypes.instanceOf(Date),
-    setSelectedDate: PropTypes.func,
+    selectedFirstDate: PropTypes.instanceOf(Date),
+    setSelectedFirstDate: PropTypes.func,
+    selectedSecondDate: PropTypes.instanceOf(Date),
+    setSelectedSecondDate: PropTypes.func,
     handleDialogClose: PropTypes.func,
 };
 
