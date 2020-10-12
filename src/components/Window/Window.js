@@ -6,12 +6,14 @@ import { positions, localizations, conditions } from "../../util/categories";
 
 // import components
 import Select from "../Select/Select";
-import Calendar from "../Calendar/Calendar";
+import DateSelect from "../Date/Date";
 import Button from "../Button/Button";
 
 import "./Window.css";
 
 function Window() {
+    const [selectedDate, setSelectedDate] = useState(new Date("1997-11-11"));
+
     const [selectedPositions, setSelectedPositions] = useState([]);
     const [selectedLocalizations, setSelectedLocalizations] = useState([]);
     const [selectedConditions, setSelectedConditions] = useState([]);
@@ -47,7 +49,12 @@ function Window() {
     return (
         <div className="window">
             <h1>Wybierz pracowników</h1>
-            <Calendar label="Okres" inputLalbe="Wybierz..." />
+            <DateSelect
+                label="Okres"
+                inputLabel="Wybierz..."
+                selectedDate={selectedDate}
+                setSelectedDate={setSelectedDate}
+            />
             <Select
                 label="Stanowiska"
                 allLabel="Wszystkie"
