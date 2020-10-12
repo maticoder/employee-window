@@ -1,0 +1,17 @@
+.date-picker-menu {
+    display: flex;
+    justify-content: flex-end;
+    margin: 1rem 0 .5rem;
+
+    button {
+        cursor: pointer;
+        padding: 0 10px;
+        border: none;
+        background-color: transparent;
+        font-size: 14px;
+        color: #FF6B01;
+        outline: none;
+        margin: 0 2px;
+        text-transform: uppercase;
+    }
+}

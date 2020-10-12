@@ -3,7 +3,10 @@ import PropTypes from "prop-types";
 import moment from "moment";
 import onClickOutside from "react-onclickoutside";
 
-import DatePickerCalendar from "../DatePickerCalendar/DatePickerCalendar";
+import DatePickerHeader from "./DatePickerHeader/DatePickerHeader";
+import DatePickerDays from "./DatePickerDays/DatePickerDays";
+import DatePickerCalendar from "./DatePickerCalendar/DatePickerCalendar";
+import DatePickerMenu from "./DatePickerMenu/DatePickerMenu";
 
 import "./DatePicker.css";
 
@@ -56,35 +59,26 @@ class DatePicker extends Component {
 
     render() {
         const { dialogDate, headerDate } = this.state;
-        const { selectedDate, setSelectedDate } = this.props;
-
-        const days = ["Ndz", "Pon", "Wt", "Śr", "Czw", "Pt", "Sob"];
 
         return (
             <div className="date-picker">
-                <div className="date-picker-header">
-                    <button onClick={this.removeMonth}>navigate_before</button>
-                    <span>{moment(headerDate).format("MMMM YYYY")}</span>
-                    <button onClick={this.addMonth}>navigate_next</button>
-                </div>
-                <div className="date-picker-days">
-                    {days.map((day) => (
-                        <span key={day} className="day">
-                            {day}
-                        </span>
-                    ))}
-                </div>
+                <DatePickerHeader
+                    date={headerDate}
+                    addMonth={this.addMonth}
+                    removeMonth={this.removeMonth}
+                />
+                <DatePickerDays
+                    days={["Ndz", "Pon", "Wt", "Śr", "Czw", "Pt", "Sob"]}
+                />
                 <DatePickerCalendar
                     date={headerDate}
                     selectedDate={dialogDate}
                     setDate={this.setDialogDate}
                 />
-                <div className="date-picker-menu">
-                    <button onClick={this.props.handleDialogClose}>
-                        Cofnij
-                    </button>
-                    <button onClick={this.handleDialogAccept}>Ok</button>
-                </div>
+                <DatePickerMenu
+                    handleAccept={this.handleDialogAccept}
+                    handleReject={this.handleClickOutside}
+                />
             </div>
         );
     }

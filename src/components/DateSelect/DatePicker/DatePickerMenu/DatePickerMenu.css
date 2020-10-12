@@ -1,0 +1,21 @@
+.date-picker-menu {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+  margin: 1rem 0 .5rem;
+}
+
+.date-picker-menu button {
+  cursor: pointer;
+  padding: 0 10px;
+  border: none;
+  background-color: transparent;
+  font-size: 14px;
+  color: #FF6B01;
+  outline: none;
+  margin: 0 2px;
+  text-transform: uppercase;
+}

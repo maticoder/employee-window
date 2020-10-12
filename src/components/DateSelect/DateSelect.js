@@ -1,13 +1,13 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 
-import DateInput from "../DateInput/DateInput";
-import DateDialog from "../DateDialog/DateDialog";
-import DatePicker from "../DatePicker/DatePicker";
+import DateInput from "./DateInput/DateInput";
+import DateDialog from "./DateDialog/DateDialog";
+import DatePicker from "./DatePicker/DatePicker";
 
-import "./Date.css";
+import "./DateSelect.css";
 
-class Date extends Component {
+class DateSelect extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -49,11 +49,11 @@ class Date extends Component {
     }
 }
 
-Date.propTypes = {
+DateSelect.propTypes = {
     label: PropTypes.string,
     inputLabel: PropTypes.string,
     selectedDate: PropTypes.instanceOf(Date),
     setSelectedDate: PropTypes.func,
 };
 
-export default Date;
+export default DateSelect;

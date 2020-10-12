@@ -33,7 +33,6 @@ function DatePickerCalendar({ date, selectedDate, setDate }) {
                 day !== "" ? (
                     <span
                         key={index}
-                        className="cell non-empty-cell"
                         className={`cell non-empty-cell ${
                             compareDate(day) ? "active" : ""
                         }`}

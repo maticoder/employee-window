@@ -6,13 +6,13 @@ import { positions, localizations, conditions } from "../../util/categories";
 
 // import components
 import Select from "../Select/Select";
-import DateSelect from "../Date/Date";
+import DateSelect from "../DateSelect/DateSelect";
 import Button from "../Button/Button";
 
 import "./Window.css";
 
 function Window() {
-    const [selectedDate, setSelectedDate] = useState(new Date("1997-11-11"));
+    const [selectedDate, setSelectedDate] = useState(null);
 
     const [selectedPositions, setSelectedPositions] = useState([]);
     const [selectedLocalizations, setSelectedLocalizations] = useState([]);
