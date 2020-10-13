@@ -8,7 +8,7 @@ export const positions = [
     "Dziennikarz",
     "Elektryk",
     "Farmaceuta",
-    "Forograf",
+    "Fotograf",
     "Fryzjer",
     "Grafik",
     "Informatyk",
