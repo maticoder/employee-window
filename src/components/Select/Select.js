@@ -43,8 +43,8 @@ class Select extends Component {
 
     handleElementChange = (element) => {
         if (this.props.selected.includes(element)) {
-            this.props.setSelected(
-                this.props.selected.filter((el) => el !== element)
+            this.props.setSelected((selected) =>
+                selected.filter((el) => el !== element)
             );
         } else {
             this.props.setSelected((selected) => [...selected, element]);
@@ -56,8 +56,8 @@ class Select extends Component {
         if (
             filtered.every((element) => this.props.selected.includes(element))
         ) {
-            this.props.setSelected(
-                this.props.selected.filter((el) => !filtered.includes(el))
+            this.props.setSelected((selected) =>
+                selected.filter((el) => !filtered.includes(el))
             );
         } else {
             const newArray = elements.filter(
@@ -154,5 +154,8 @@ Select.propTypes = {
     setSelected: PropTypes.func,
     maxInputElements: PropTypes.number,
 };
+
+// for testing purposes
+export { Select };
 
 export default onClickOutside(Select);

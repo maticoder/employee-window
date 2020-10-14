@@ -3,11 +3,9 @@ import PropTypes from "prop-types";
 
 import "./Button.css";
 
-function Button(props) {
-    const { text } = props;
-
+function Button({ text, onClick }) {
     return (
-        <button {...props} className="window-button">
+        <button onClick={onClick} className="window-button">
             {text}
         </button>
     );
