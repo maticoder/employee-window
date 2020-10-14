@@ -52,18 +52,17 @@ class Select extends Component {
     };
 
     handleAllElementChange = (elements) => {
-        const filtered = this.filteredOptions();
         if (
-            filtered.every((element) => this.props.selected.includes(element))
+            elements.every((element) => this.props.selected.includes(element))
         ) {
             this.props.setSelected((selected) =>
-                selected.filter((el) => !filtered.includes(el))
+                selected.filter((el) => !elements.includes(el))
             );
         } else {
-            const newArray = elements.filter(
-                (element) => !this.props.selected.includes(element)
-            );
-            this.props.setSelected((selected) => [...selected, ...newArray]);
+            this.props.setSelected((selected) => [
+                ...selected,
+                ...elements.filter((element) => !selected.includes(element)),
+            ]);
         }
     };
 

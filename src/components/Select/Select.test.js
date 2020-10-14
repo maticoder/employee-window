@@ -45,7 +45,7 @@ test("check state", () => {
     expect(select.children().length).toBe(2);
 });
 
-test("test add element method", () => {
+test("test the add element method", () => {
     const options = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
     let selectedElements = [];
     const setSelected = (s) => {
@@ -67,7 +67,7 @@ test("test add element method", () => {
     expect([...selectedElements]).toEqual(["2"]);
 });
 
-test("test remove element method", () => {
+test("test the remove element method", () => {
     const options = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
     let selectedElements = ["2"];
     const setSelected = (s) => {
@@ -89,7 +89,7 @@ test("test remove element method", () => {
     expect([...selectedElements]).toEqual([]);
 });
 
-test("test add elements method", () => {
+test("test the add elements method", () => {
     const options = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
     let selectedElements = [];
     const setSelected = (s) => {
@@ -111,7 +111,7 @@ test("test add elements method", () => {
     expect([...selectedElements]).toEqual(["0", "1", "2"]);
 });
 
-test("test remove elements method", () => {
+test("test the remove elements method", () => {
     const options = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
     let selectedElements = ["0", "1", "2"];
     const setSelected = (s) => {
