@@ -11,7 +11,7 @@ const data = [
         pracownik: "Barbara Bar",
         stanowisko: "Fryzjer",
         lokalizacja: ["Poznań", "Lublin"],
-        warunki: "Umowa zlecenie",
+        warunki: "Umowa o zlecenie",
     },
     {
         id: 2,
@@ -32,7 +32,7 @@ const data = [
         pracownik: "Edyta Ernst",
         stanowisko: "Bankowiec",
         lokalizacja: ["Kraków", "Warszawa"],
-        warunki: "Umowa zlecenie",
+        warunki: "Umowa o zlecenie",
     },
     {
         id: 5,
