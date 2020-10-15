@@ -153,62 +153,6 @@ const data = [
         lokalizacja: ["Gdańsk", "Szczecin"],
         warunki: "Umowa o pracę",
     },
-    // {
-    //     id: 22,
-    //     pracownik: "Felicja Fanowska",
-    //     stanowisko: "Mechanik",
-    //     lokalizacja: ["Poznań", "Gdańsk"],
-    //     warunki: "Umowa o zlecenie",
-    // },
-    // {
-    //     id: 23,
-    //     pracownik: "Felicja Fanowska",
-    //     stanowisko: "Tłumacz",
-    //     lokalizacja: ["Wrocław", "Łódź"],
-    //     warunki: "Umowa o dzieło",
-    // },
-    // {
-    //     id: 24,
-    //     pracownik: "Felicja Fanowska",
-    //     stanowisko: "Sprzedawca",
-    //     lokalizacja: ["Bydgoszcz", "Białystok"],
-    //     warunki: "Umowa o pracę",
-    // },
-    // {
-    //     id: 25,
-    //     pracownik: "Felicja Fanowska",
-    //     stanowisko: "Taksówkarz",
-    //     lokalizacja: ["Gdańsk", "Lublin"],
-    //     warunki: "Umowa o zlecenie",
-    // },
-    // {
-    //     id: 26,
-    //     pracownik: "Felicja Fanowska",
-    //     stanowisko: "Prawnik",
-    //     lokalizacja: ["Warszawa", "Poznań"],
-    //     warunki: "Umowa o dzieło",
-    // },
-    // {
-    //     id: 27,
-    //     pracownik: "Felicja Fanowska",
-    //     stanowisko: "Fotograf",
-    //     lokalizacja: ["Wrocław", "Łódź"],
-    //     warunki: "Umowa o pracę",
-    // },
-    // {
-    //     id: 28,
-    //     pracownik: "Felicja Fanowska",
-    //     stanowisko: "Weterynarz",
-    //     lokalizacja: ["Warszawa", "Łódź"],
-    //     warunki: "Umowa o zlecenie",
-    // },
-    // {
-    //     id: 29,
-    //     pracownik: "Felicja Fanowska",
-    //     stanowisko: "Sekretarka",
-    //     lokalizacja: ["Lublin", "Białystok"],
-    //     warunki: "Umowa o dzieło",
-    // },
 ];
 
 export default data;

@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
-import moment from "moment";
+
+import { getCalendar, compareDate } from "../../../../util/date";
 
 import DatePickerCalendarCell from "./DatePickerCalendarCell/DatePickerCalendarCell";
 
@@ -14,34 +15,7 @@ function DatePickerCalendar({
     lastHovered,
     setLastHovered,
 }) {
-    const firstDay = moment(navigationDate).startOf("month").format("d");
-    const lastDay = moment(navigationDate).endOf("month").format("D");
-
-    const calendar = [];
-    for (let i = 0; i < firstDay; i++) {
-        calendar.push(null);
-    }
-    for (let i = 0; i < lastDay; i++) {
-        calendar.push(
-            new Date(
-                `${navigationDate.getFullYear()}-${
-                    navigationDate.getMonth() + 1
-                }-${i + 1}`
-            )
-        );
-    }
-    for (let i = lastDay; i < 42 - firstDay; i++) {
-        calendar.push(null);
-    }
-
-    const compareDate = (date) => {
-        return (
-            moment(date).format("YYYY MM DD") ===
-                moment(selectedFirstDate).format("YYYY MM DD") ||
-            moment(date).format("YYYY MM DD") ===
-                moment(selectedSecondDate).format("YYYY MM DD")
-        );
-    };
+    const calendar = getCalendar(navigationDate);
 
     return (
         <div className="date-picker-calendar">
@@ -49,7 +23,11 @@ function DatePickerCalendar({
                 <DatePickerCalendarCell
                     key={index}
                     date={date}
-                    active={compareDate(date)}
+                    active={compareDate(
+                        date,
+                        selectedFirstDate,
+                        selectedSecondDate
+                    )}
                     highlight={
                         (date > selectedFirstDate &&
                             date < selectedSecondDate) ||

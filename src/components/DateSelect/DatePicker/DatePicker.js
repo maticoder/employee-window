@@ -140,4 +140,6 @@ DatePicker.propTypes = {
     handleDialogClose: PropTypes.func,
 };
 
+export { DatePicker };
+
 export default onClickOutside(DatePicker);

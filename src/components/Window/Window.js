@@ -44,7 +44,13 @@ function Window() {
     };
 
     const handleButtonClick = () => {
-        console.log(selectedEmployees);
+        console.log(
+            data.filter((employee) =>
+                selectedEmployees.includes(employee.pracownik)
+            )
+        );
+        console.log(selectedFirstDate);
+        console.log(selectedSecondDate);
     };
 
     return (

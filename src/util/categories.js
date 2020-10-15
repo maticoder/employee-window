@@ -53,4 +53,8 @@ export const localizations = [
     "Białystok",
 ];
 
-export const conditions = ["Umowa o pracę", "Umowa zlecenie", "Umowa o dzieło"];
+export const conditions = [
+    "Umowa o pracę",
+    "Umowa o zlecenie",
+    "Umowa o dzieło",
+];

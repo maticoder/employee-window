@@ -9,7 +9,7 @@
 }
 
 .select-input.active {
-  border-bottom: none;
+  border-bottom: 1px solid transparent;
 }
 
 .select-input-label {
